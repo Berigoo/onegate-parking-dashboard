@@ -19,6 +19,15 @@ class CreateUserCards extends CreateRecord
 
     public function handleCardReadSuccess(string $uid): void
     {
+        if ($uid == -1) {
+            Notification::make()
+                ->title('Card read timer expired')
+                ->body('Please request for card read again...')
+                ->danger()
+                ->send();
+            return;
+        }
+        
         Notification::make()
             ->title('Card read success')
             ->body('Card UID: ' . $uid)
