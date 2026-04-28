@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'parking-system' => [
+        'url' = env('PARKING_SYSTEM_URL')
+    ]
+
 ];

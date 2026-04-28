@@ -32,7 +32,8 @@ class UserCardsForm
                             ->tooltip('Scan kartu')
                             ->action(function ($livewire) {
                                 try {
-                                    $response = Http::post('http://127.0.0.1:8080/register/start');
+                                    $url = config('services.register.url');
+                                    $response = Http::post($url . '/register/start');
                                     if ($response->failed()) {
                                         Notification::make()
                                             ->title('Register Failed')
