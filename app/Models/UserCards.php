@@ -8,14 +8,12 @@ use App\Models\ActiveEntry;
 
 class UserCards extends Model
 {
-    use HasOne;
-    
     protected $fillable = [
         'uid',
         'nama', // add other columns too
     ];
 
-    public function isEntered() {
+    public function activeEntry() {
         return $this->hasOne(ActiveEntry::class);
     }
 }

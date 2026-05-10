@@ -8,8 +8,6 @@ use App\Models\UserCards;
 
 class ActiveEntry extends Model
 {
-    use BelongsTo;
-
     public function userCard()
     {
         return $this->belongsTo(UserCards::class);
