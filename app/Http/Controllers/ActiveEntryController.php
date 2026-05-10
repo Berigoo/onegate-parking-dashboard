@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActiveEntryResource;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Models\ActiveEntry;
 use App\Models\UserCards;
@@ -36,6 +37,11 @@ class ActiveEntryController extends Controller
             $entry = new ActiveEntry();
             $entry->userCard()->associate($card);
             $entry->save();
+
+            AccessLog::create([
+                'user_card_id' => $card->id,
+                'entered_at' => now(),
+            ]);
         }
 
         return response()->json([
@@ -95,6 +101,14 @@ class ActiveEntryController extends Controller
                 'success' => false,
             ]);
         }
+
+        AccessLog::where('user_card_id', $entry->userCard->id)
+            ->whereNull('exited_at')
+            ->latest()
+            ->first()
+            ?->update([
+                'exited_at' => now(),
+            ]);
         
         $entry->delete();
 
