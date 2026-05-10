@@ -20,7 +20,9 @@ class UserCardsResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'User Cards';
+    protected static ?string $navigationLabel = 'Access Cards';
+    
+    protected static ?string $recordTitleAttribute = 'Access Cards';
 
     public static function form(Schema $schema): Schema
     {

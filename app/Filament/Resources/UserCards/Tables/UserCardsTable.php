@@ -15,8 +15,10 @@ class UserCardsTable
         return $table
             ->columns([
                 TextColumn::make('uid')
+                    ->label('UID')
                     ->searchable(),
                 TextColumn::make('nama')
+                    ->label('Name')
                     ->searchable(),
             ])
             ->filters([
