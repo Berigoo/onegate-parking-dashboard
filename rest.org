@@ -1,0 +1,29 @@
+# index
+GET http://localhost:8000/api/active-entries
+Authorization: Bearer 1|BROFIjULCvHGKq1pn1h7i0V4Z3D0CeCB2zc7qHRycca7c9bb
+
+# post
+POST http://localhost:8000/api/active-entries
+Authorization: Bearer 1|BROFIjULCvHGKq1pn1h7i0V4Z3D0CeCB2zc7qHRycca7c9bb
+Content-Type: application/json
+
+{
+	"uid": "123123"
+}
+
+# show
+GET http://localhost:8000/api/active-entries/123123
+Authorization: Bearer 1|BROFIjULCvHGKq1pn1h7i0V4Z3D0CeCB2zc7qHRycca7c9bb
+
+# update (doing nothing)
+PUT http://localhost:8000/api/active-entries/123123
+Authorization: Bearer 1|BROFIjULCvHGKq1pn1h7i0V4Z3D0CeCB2zc7qHRycca7c9bb
+Content-Type: application/json
+
+{
+	"uid": "123123"
+}
+
+# delete
+DELETE http://localhost:8000/api/active-entries/123123
+Authorization: Bearer 1|BROFIjULCvHGKq1pn1h7i0V4Z3D0CeCB2zc7qHRycca7c9bb

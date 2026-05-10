@@ -10,6 +10,6 @@ class ActiveEntry extends Model
 {
     public function userCard()
     {
-        return $this->belongsTo(UserCards::class);
+        return $this->belongsTo(UserCards::class, 'user_card_id');
     }
 }

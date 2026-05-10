@@ -24,10 +24,19 @@ class ActiveEntryController extends Controller
     public function store(Request $request)
     {
         $card = UserCards::where('uid', $request->uid)
-            ->firstOrFail();
-        $entry = new ActiveEntry();
-        $entry->userCard()->associate($card);
-        $entry->save();
+            ->first();
+
+        if (!$card) {
+            return response()->json([
+                'success' => false,
+            ], 404);
+        }
+        
+        if (!$card->activeEntry) {
+            $entry = new ActiveEntry();
+            $entry->userCard()->associate($card);
+            $entry->save();
+        }
 
         return response()->json([
             'success' => true,
@@ -41,7 +50,13 @@ class ActiveEntryController extends Controller
     {
         $entry = ActiveEntry::whereHas('userCard', function ($q) use ($uid){
             $q->where('uid', $uid);
-        })->firstOrFail();
+        })->first();
+
+        if (!$entry) {
+            return response()->json([
+                'success' => false,
+            ], 404);
+        }
 
         return new ActiveEntryResource($entry);
     }
@@ -53,7 +68,13 @@ class ActiveEntryController extends Controller
     {
         $entry = ActiveEntry::whereHas('userCard', function ($q) use ($uid){
             $q->where('uid', $uid);
-        })->firstOrFail();
+        })->first();
+
+        if (!$entry) {
+            return response()->json([
+                'success' => false,
+            ], 404);
+        }
 
         return response()->json([
             'success' => true
@@ -67,7 +88,14 @@ class ActiveEntryController extends Controller
     {
         $entry = ActiveEntry::whereHas('userCard', function ($q) use ($uid){
             $q->where('uid', $uid);
-        })->firstOrFail();
+        })->first();
+
+        if (!$entry) {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+        
         $entry->delete();
 
         return response()->json([

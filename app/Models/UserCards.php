@@ -14,6 +14,6 @@ class UserCards extends Model
     ];
 
     public function activeEntry() {
-        return $this->hasOne(ActiveEntry::class);
+        return $this->hasOne(ActiveEntry::class, 'user_card_id');
     }
 }

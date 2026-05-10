@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('active_entries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_cards_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_card_id')->constrained('user_cards')->cascadeOnDelete();
             $table->timestamps();
         });
     }
